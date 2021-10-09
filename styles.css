@@ -1,0 +1,48 @@
+.mainContainer {
+    position: absolute;
+    z-index: 0;
+    width: 95vw;
+    height: 95vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.background{
+    image-rendering: pixelated;
+    background-image: url("./media/images/mainMenuBg.png");
+    width:  95vw;
+    height: 95vh; 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 95%;
+    position: absolute;
+    z-index: -1;
+}
+
+.menuOptionText{
+    width: calc(118vw/3.5);
+    height: calc(25vh/3.5);
+    image-rendering: pixelated;
+    flex-grow: 4;
+}
+
+.pokeballSelector{
+    width: calc(25vh/3.5);
+    height: calc(25vh/3.5);
+    image-rendering: pixelated;
+    margin-right: 1vh;
+}
+
+.hidden{
+    visibility: hidden;
+}
+
+.menuOption{
+    padding: 2vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: right;
+}
