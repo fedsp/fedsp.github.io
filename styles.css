@@ -8,11 +8,12 @@
     align-items: center;
     justify-content: center;
 }
-.background{
+
+.background {
     image-rendering: pixelated;
     background-image: url("./media/images/mainMenuBg.png");
-    width:  95vw;
-    height: 95vh; 
+    width: 95vw;
+    height: 95vh;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -21,28 +22,107 @@
     z-index: -1;
 }
 
-.menuOptionText{
+.menuOptionText {
     width: calc(118vw/3.5);
     height: calc(25vh/3.5);
     image-rendering: pixelated;
     flex-grow: 4;
 }
 
-.pokeballSelector{
+.pokeballSelector {
     width: calc(25vh/3.5);
     height: calc(25vh/3.5);
     image-rendering: pixelated;
     margin-right: 1vh;
 }
 
-.hidden{
+.hidden {
     visibility: hidden;
 }
 
-.menuOption{
+.menuOption {
     padding: 2vh;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: right;
+}
+
+#trunfoLogo{
+    width: 29vw;
+    height: 17vw;
+    image-rendering: pixelated;
+    display: inline-block;
+    position: relative;
+    background-image: url("./media/images/super-trunfo-logo.png");
+    background-repeat:no-repeat;
+    background-size:100%;
+    animation: colorSwap 2s ease-in-out  infinite;
+}
+
+#pokemonLogo {
+    width: 45vw;
+    height: 17vw;
+    image-rendering: pixelated;
+    display: inline-block;
+    position: relative;
+    background-image: url("./media/images/pokemon-logo.png");
+    background-size:100%;
+}
+
+#pokemonLogo::after{
+    content: ""; 
+    position: absolute;
+    top: 25%;
+    left: 0;
+    width: 10%;
+    height: 50%;
+    background-image: radial-gradient(rgba(255,255,255,1) 20%,rgba(0,0,0,0) 80%);
+    z-index: 100;
+    animation: shine 2s ease-in-out  infinite;
+}
+
+@keyframes shine{
+    0% {
+        left: 0%;
+        opacity: 0;
+    }
+    30%{
+        opacity: .3;
+    }
+    55%{
+        opacity:.25;
+    }
+    60%{
+        opacity:1;
+    }
+    65%{
+        opacity:.3;
+    }
+    80%{
+        opacity:0;
+    }
+    100% {
+      left: 100%;
+      opacity:0;
+    }
+  }
+
+@keyframes colorSwap{
+    0%{
+        filter: saturate(100%);
+    }
+    30%{
+        filter: saturate(300%);
+    }
+    60%{
+        filter: saturate(300%);
+    }
+    100%{
+        filter: saturate(100%);
+    }
+}
+
+.banner{
+    margin-bottom: 30vh;
 }
