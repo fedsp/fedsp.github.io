@@ -1,0 +1,143 @@
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --player1PokeSize: 35vh;
+    --player2PokeSize: 20vh;
+}
+
+@font-face {
+    font-family: pixel;
+    src: url(./media/fonts/ARCADECLASSIC.TTF);
+}
+
+.mainContainer {
+    position: absolute;
+    z-index: 0;
+    width: 95vw;
+    height: 95vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.background {
+    image-rendering: pixelated;
+    background-image: url("./media/images/battleground.png");
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 95%;
+    position: absolute;
+    z-index: -1;
+    overflow: hidden;
+}
+
+#player1Pokemon {
+    width: var(--player1PokeSize);
+    height: var(--player1PokeSize);
+    position: absolute;
+    top: calc(98vh - var(--player1PokeSize));
+    right: 62vw;
+}
+
+#player2Pokemon {
+    width: var(--player2PokeSize);
+    height: var(--player2PokeSize);
+    position: absolute;
+    top: 35vh;
+    right: 22vw;
+}
+
+.pokemonTile {
+    width: 100%;
+    height: 100%;
+    image-rendering: pixelated;
+}
+
+.tst {
+    font-family: pixel;
+    font-weight: 1000;
+}
+
+#player1Menu {
+    position: absolute;
+    top: 20vh;
+    left: 2vw;
+}
+
+#player1Menu > .menuTile {
+    background-image: url("./media/images/menu_ally.png");
+}
+
+#player2Menu > .menuTile {
+    background-image: url("./media/images/menu_enemy.png");
+}
+
+#player2Menu {
+    position: absolute;
+    top: 3vh;
+    right: 2vw;
+}
+
+.menuTile {
+    image-rendering: pixelated;    
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.menuTile {
+    width: calc(120 * 0.23vw);    
+    height: calc(68 * 0.44vh);
+}
+
+.scoreItem{
+    position:absolute;
+    font-family: pixel;
+    font-size: 2.6vw;
+    width: 6.7vw;
+    height: 4.5vh;
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    right:2.35%;
+}
+.playerHp{
+    top:4.4%;    
+}
+.playerAttack{
+    top:28%;
+}
+.playerDefense{
+    top:51.5%;
+}
+.playerWeight{
+    top:75%;
+}
+
+.scoreItemAnimated{
+    animation: shineValue .7s ease-in-out  infinite;
+}
+
+@keyframes shineValue {
+    0%{
+        border: dashed .7vh orange ;
+    }
+    50%{
+        border: dashed .7vh rgb(216, 196, 85) ;
+    }
+    100%{
+        border: dashed .7vh orange ;
+    }
+}

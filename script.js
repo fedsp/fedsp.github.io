@@ -1,8 +1,9 @@
 let rendered = false;
 let optionSelected = "singlePlayer";
 const optionSound = new Audio('./media/audio_selected/menu_alt.wav');
-const optionSelectedSound = new Audio('./media/audio_selected/menu.wav');
+const invalidOptionSelectedSound = new Audio('./media/audio_selected/menu.wav');
 const victorySound = new Audio('./media/audio_selected/victory.wav');
+const validOptionSelectedSound = new Audio('./media/audio_selected/menu_confirm.wav');
 
 function firstRender(){
     if(rendered){
@@ -24,7 +25,8 @@ document.onkeydown = function(evt) {
                 handleOptionChange();
                 break;
             case "Enter":
-                optionSelectedSound.play();
+                
+                handleOptionSelect();
                 break;
             case "Control":
                 victorySound.play();
@@ -43,3 +45,19 @@ function handleOptionChange(){
     newPokeIcon.className = "pokeballSelector";
     optionSelected = optionSelected=="singlePlayer"?"multiPlayer":"singlePlayer"    
 }
+
+async function handleOptionSelect(){
+    if(optionSelected == "singlePlayer"){
+        await validOptionSelectedSound.play();
+        await sleep(1000);
+        window.location.replace("./singlePlayer/index.html");
+    }
+    else{
+        invalidOptionSelectedSound.play();
+    }
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+  

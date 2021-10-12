@@ -1,8 +1,16 @@
+body,html {
+    margin: 0;
+    padding: 0;
+}
+* {
+    box-sizing: border-box;
+}
+
 .mainContainer {
     position: absolute;
     z-index: 0;
-    width: 95vw;
-    height: 95vh;
+    width: 100vw;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,8 +20,8 @@
 .background {
     image-rendering: pixelated;
     background-image: url("./media/images/mainMenuBg.png");
-    width: 95vw;
-    height: 95vh;
+    width: 100vw;
+    height: 100vh;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
