@@ -44,6 +44,9 @@ body, html {
 }
 
 .pokemonTileDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     position: absolute;
 }
 
@@ -154,4 +157,8 @@ body, html {
     background-color: white;
     width: fit-content;
     padding: 0.5vw;
+    border: solid 0.3vw rgb(30,60,60);
+    font-family: pixel;
+    border-radius: 2px;
+    font-size: 4vh;
 }
