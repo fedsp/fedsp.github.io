@@ -87,6 +87,10 @@ body, html {
     background-image: url("./media/images/menu_enemy.png");
 }
 
+#player1Menu > .menuTile > .scoreItem{
+    cursor: pointer;
+} 
+
 #player2Menu {
     position: absolute;
     top: 4vh;

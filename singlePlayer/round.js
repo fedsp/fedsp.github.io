@@ -19,3 +19,5 @@ function drawPlayerCard(player1Or2,card){
     let weightDiv = document.getElementById(`player${player1Or2}Weight`);
     weightDiv.innerHTML = card.weight;
 }
+
+

@@ -46,6 +46,17 @@ function handleOptionChange(){
     optionSelected = optionSelected=="singlePlayer"?"multiPlayer":"singlePlayer"    
 }
 
+function handleMouseClick(option){
+    if(option == "singlePlayer"){
+        optionSelected == "singlePlayer";
+        handleOptionSelect();
+    }
+    else{
+        optionSelected == "multiPlayer";
+        handleOptionSelect();
+    }
+}
+
 async function handleOptionSelect(){
     if(optionSelected == "singlePlayer"){
         await validOptionSelectedSound.play();

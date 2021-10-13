@@ -30,7 +30,6 @@ document.onkeydown = function(evt) {
         }
 };
 
-
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -76,4 +75,8 @@ async function mountSingleCard(index){
         weight:pokeData.weight
     }
     return pokeCard;
+}
+
+window.doStuff = function(){
+    playRound(player1Cards,player2Cards);
 }
