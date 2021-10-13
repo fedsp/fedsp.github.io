@@ -1,6 +1,7 @@
 body, html {
     margin: 0;
     padding: 0;
+    overflow: hidden;
 }
 
 * {
@@ -8,8 +9,8 @@ body, html {
 }
 
 :root {
-    --player1PokeSize: 35vh;
-    --player2PokeSize: 20vh;
+    --player1PokeSize: 70vh;
+    --player2PokeSize: 45vh;
 }
 
 @font-face {
@@ -20,8 +21,8 @@ body, html {
 .mainContainer {
     position: absolute;
     z-index: 0;
-    width: 95vw;
-    height: 95vh;
+    width: 100vw;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -42,20 +43,23 @@ body, html {
     overflow: hidden;
 }
 
+.pokemonTileDiv{
+    position: absolute;
+}
+
 #player1Pokemon {
     width: var(--player1PokeSize);
     height: var(--player1PokeSize);
-    position: absolute;
-    top: calc(98vh - var(--player1PokeSize));
-    right: 62vw;
+    top: 51vh;
+    right: 58vw;
 }
+
 
 #player2Pokemon {
     width: var(--player2PokeSize);
     height: var(--player2PokeSize);
-    position: absolute;
-    top: 35vh;
-    right: 22vw;
+    top: 42vh;
+    right: 14vw;
 }
 
 .pokemonTile {
@@ -71,8 +75,8 @@ body, html {
 
 #player1Menu {
     position: absolute;
-    top: 20vh;
-    left: 2vw;
+    top: 4vh;
+    left: 1vw;
 }
 
 #player1Menu > .menuTile {
@@ -85,7 +89,7 @@ body, html {
 
 #player2Menu {
     position: absolute;
-    top: 3vh;
+    top: 4vh;
     right: 2vw;
 }
 
@@ -140,4 +144,10 @@ body, html {
     100%{
         border: dashed .7vh orange ;
     }
+}
+
+.pokemonName{
+    background-color: white;
+    width: fit-content;
+    padding: 0.5vw;
 }

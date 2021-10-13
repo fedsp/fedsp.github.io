@@ -3,7 +3,9 @@ import playRound from "./round.js"
 let rendered = false;
 let player1Cards = [];
 let player2Cards = [];
+const POKEMON_QTY = 788;
 firstRender();
+
 
 function firstRender(){
     if(rendered){
@@ -35,8 +37,8 @@ function sleep(ms) {
   
 
 async function getCards(){
-    let pokeIndices = Array.from({length: 52}, (x, i) => i);
-    pokeIndices = pokeIndices.slice(1, 52);
+    let pokeIndices = Array.from({length: POKEMON_QTY}, (x, i) => i);
+    pokeIndices = pokeIndices.slice(1, POKEMON_QTY);
     let player1Indices = [];
     let player2Indices = [];
     for (let i=0; i<20;i++){
@@ -66,8 +68,8 @@ async function mountSingleCard(index){
     let pokeData = await resp.json();
     let pokeCard = {
         name:pokeData.name,
-        spriteBack:pokeData.sprites.back_default,
-        spriteFront:pokeData.sprites.front_default,
+        spriteBack:pokeData.sprites.back_default!=null?pokeData.sprites.back_default:"./media/images/genericPokemonBack.png",
+        spriteFront:pokeData.sprites.front_default!=null?pokeData.sprites.front_default:"./media/images/genericPokemonBack.png",
         hp:pokeData.stats[0].base_stat,
         attack:pokeData.stats[1].base_stat,
         defense:pokeData.stats[2].base_stat,
