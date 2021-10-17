@@ -28,14 +28,15 @@ body, html {
 
 #pokeballLoadingScreen{
     position: absolute;
-    left: 0px; 
+    left: 0; 
     right: 0; 
     top: 0;
     bottom: 0; 
     margin: auto;
-    width: 192px;
-    height: 16px;
+    width: 3072px;
+    height: 256px;
     background-image: url("./media/images/loading.png");
+    background-size: 100% 100%;
     background-repeat: no-repeat;
     image-rendering: pixelated;
     animation: pokeballLoading 1s steps(12) infinite;
@@ -46,7 +47,7 @@ body, html {
         left :0px;
     }
     100%{
-        left :-192px;
+        left :-3072px;
     }
 }
 
@@ -57,8 +58,8 @@ body, html {
     top: 0;
     bottom: 0; 
     margin: auto;
-    width: 16px;
-    height: 16px;
+    width: 256px;
+    height: 256px;
 }
 
 #pokeballLoadingOverlay2{
@@ -68,13 +69,11 @@ body, html {
     top: 0;
     bottom: 0; 
     margin: auto;
-    width: 16px;
-    height: 16px;
+    width: 256px;
+    height: 256px;
     box-shadow: 0 0 0 99999px rgb(255, 255, 255);
     z-index: 4;
 }
-
-
 
 .mainContainer {
     position: absolute;
