@@ -1,52 +1,57 @@
-import playRound from "./round.js";
-import mountData from "./mountData";
-let rendered = false;
-let controllersLocked = true;
-const POKEMON_QTY = 760;
-const DECK_QTY = 20;
-const STANDARD_DEVIATION_HP = 25.35;
-const STANDARD_DEVIATION_ATK = 29.03;
-const STANDARD_DEVIATION_DEF = 29.16;
-const AVG_HP = 68.12;
-const AVG_ATK = 74.97;
-const AVG_DEF = 70.49;
-const AVG_SP_ATK = 68.53;
-const AVG_SP_DEF = 69.12;
-main();
+let { mountData } = await import("./mountData.js");
+let { keyboardInputController } = await import("./keyboardInputController.js");
 
+(() => {
+    let rendered = false;
+    self.controllersLocked = true;
 
-function main() {
-    if (rendered) {
-        return;
-    }    
-    document.cards = mountData();
-    
-}
-
-document.onkeydown = function (evt) {
-    if(controllersLocked){
-        return;
+    self.consts = {
+        POKEMON_QTY: 760,
+        DECK_QTY: 20,
+        AVG_HP: 68.12,
+        AVG_ATK: 74.97,
+        AVG_DEF: 70.49,
+        AVG_SP_ATK: 68.53,
+        AVG_SP_DEF: 69.12
     }
-    evt = evt || window.event;
-    switch (evt.key) {
-        case "ArrowUp":
-            break;
-        case "ArrowDown":
-            break;
-        case "Enter":
-            if(player1Cards.length==DECK_QTY){
-                playRound(document.cards[0], document.cards[1]);
-            }
-            else{
-                let x = "";
-            }
-        default:
+
+    self.player1Cards = [];
+    self.player2Cards = [];
+
+    async function main() {
+        if (rendered) {
             return;
+        }
+        await sleep(1000);
+        mountData();
     }
-};
+
+    document.onkeydown = function (evt) {
+        if (controllersLocked) {
+            return;
+        }
+        keyboardInputController(evt);
+    };
 
 
 
-window.doStuff = function () {
-    playRound(player1Cards, player2Cards);
-}
+    window.doStuff = function () {
+        playRound(player1Cards, player2Cards);
+    }
+
+    main();
+
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+})();
+
+
+
+
+
+
+
+
+
+

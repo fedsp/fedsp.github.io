@@ -1,11 +1,10 @@
-export default function playRound(player1Cards,player2Cards){
-    let player1Card = player1Cards[Math.floor(Math.random()*player1Cards.length)];
+export function playRound(){
+    let player1Card = self.player1Cards[Math.floor(Math.random()*self.player1Cards.length)];
     drawPlayerCard(1,player1Card);
-    let player2Card = player2Cards[Math.floor(Math.random()*player2Cards.length)];
+    let player2Card = self.player2Cards[Math.floor(Math.random()*self.player2Cards.length)];
     drawPlayerCard(2,player2Card);
-    drawDeck(1,player1Cards)
-    drawDeck(2,player2Cards)
-
+    drawDeck(1,self.player1Cards)
+    drawDeck(2,self.player2Cards)
 }
 
 function drawPlayerCard(player1Or2,card){
@@ -38,7 +37,7 @@ function drawDeck(player1Or2,deck){
         let cardPic = document.createElement("img");
         cardPic.className = "deckCard";
         cardPic.src = "./media/images/cardBack.png";
-        cardPic.style.bottom = `${parseInt(i)*2}px`;
+        cardPic.style.bottom = `${parseInt(i)*1.5}vh`;
         deckDiv.appendChild(cardPic);
     }
 }
