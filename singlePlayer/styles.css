@@ -125,6 +125,7 @@ body, html {
     width: 100%;
     height: 100%;
     image-rendering: pixelated;
+    z-index: 4;
 }
 
 .glowingTrunfo{
@@ -133,16 +134,16 @@ body, html {
 
 @keyframes glowingPokemon {
     0%{
-        -webkit-filter: drop-shadow(0px 0px 0 yellow) drop-shadow(-0px -0px 0 yellow);
-        filter: drop-shadow(0px 0px 0 yellow) drop-shadow(-0px -0px 0 yellow);
+        -webkit-filter: drop-shadow(0px 0px 0 rgb(253, 71, 253)) drop-shadow(-0px -0px 0 rgb(253, 71, 253));
+        filter: drop-shadow(0px 0px 0 rgb(253, 71, 253)) drop-shadow(-0px -0px 0 rgb(253, 71, 253));
     }
     50%{
-        -webkit-filter: drop-shadow(3px 3px 3px rgba(255,255,0,1)) drop-shadow(-3px -3px 3px rgba(255,255,0,1));
-        filter: drop-shadow(3px 3px 3px rgba(255,255,0,1)) drop-shadow(-3px -3px 3px rgba(255,255,0,1));
+        -webkit-filter: drop-shadow(.7vh .7vh .7vh rgba(253,71,253,1)) drop-shadow(-.7vh -.7vh .7vh rgba(253,71,253,1));
+        filter: drop-shadow(.7vh .7vh .7vh rgba(253,71,253,1)) drop-shadow(-.7vh -.7vh .7vh rgba(253,71,253,1));
     }
     100%{
-        -webkit-filter: drop-shadow(0px 0px 0 yellow) drop-shadow(-0px -0px 0 yellow);
-        filter: drop-shadow(0px 0px 0 yellow) drop-shadow(-0px -0px 0 yellow);
+        -webkit-filter: drop-shadow(0px 0px 0 rgb(253, 71, 253)) drop-shadow(-0px -0px 0 rgb(253, 71, 253));
+        filter: drop-shadow(0px 0px 0 rgb(253, 71, 253)) drop-shadow(-0px -0px 0 rgb(253, 71, 253));
     }
 }
 
@@ -182,8 +183,8 @@ body, html {
 }
 
 .menuTile {
-    width: calc(120 * 0.23vw);
-    height: calc(80 * 0.44vh);
+    width: 27.6vw;
+    height: 35.2vh;
 }
 
 .scoreItem {
@@ -330,4 +331,31 @@ body, html {
     background-size: 100% 100%;
     position: absolute;
     image-rendering: pixelated;
+}
+
+.playerTable{
+    position: absolute;
+    z-index: 4;
+    right: .1vw;
+    /* height: 35.2vh; */
+    width: 27.6vw;    
+    display: inline-table;  
+}
+
+
+.playerTable td:first-of-type{
+    background-color: purple;
+    /* background-color: transparent;    */
+    width: 19.5vw;  
+}
+
+.playerTable td{
+    background-color: red;
+    font-size: .6vw;
+    font-family: pixel;
+    text-align: center;
+    border-collapse: separate;
+    border-spacing: 1px;
+    width: 8.1vw; 
+    height: 2vh;
 }

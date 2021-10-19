@@ -22,7 +22,7 @@ let { keyboardInputController } = await import("./keyboardInputController.js");
         if (rendered) {
             return;
         }
-        await sleep(1000);
+        await sleep(1);
         mountData();
     }
 
