@@ -48,4 +48,22 @@ export function drawDeck(player1Or2,deck){
     }
 }
 
+export function drawCursor(prevIndex,newIndex){
+    const attributeRowNames = [
+        "hpRow",
+        "attackRow",
+        "defenseRow",
+        "spAttackRow",
+        "spDefenseRow",
+        "weightRow",
+    ]
+    let menuTable = document.getElementById(`player1Table`); 
+    let prevRow = menuTable.getElementsByClassName(attributeRowNames[prevIndex])[0];  
+    let prevCursorDiv = prevRow.getElementsByClassName("cursorCell")[0];
+    prevCursorDiv.className = "cursorCell";
+    let newRow = menuTable.getElementsByClassName(attributeRowNames[newIndex])[0];  
+    let newCursorDiv = newRow.getElementsByClassName("cursorCell")[0];
+    newCursorDiv.className = "cursorCell cursorCellCurrent";
+}
+
 
