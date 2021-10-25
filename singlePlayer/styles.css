@@ -18,6 +18,10 @@ body, html {
     src: url(./media/fonts/ARCADECLASSIC.TTF);
 }
 
+.hiddenElement{
+    display: none;
+}
+
 #loadingScreen{
     position: absolute;
     width: 100vw;
@@ -98,6 +102,17 @@ body, html {
     position: absolute;
     z-index: -1;
     overflow: hidden;
+}
+
+#pressStart{
+    background-image: url("./media/images/start.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    z-index: 5;
+    width: 30vw;
+    height: 40vh;
+    image-rendering: pixelated;
 }
 
 .pokemonTileDiv {

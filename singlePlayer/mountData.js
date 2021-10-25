@@ -1,10 +1,10 @@
-
-
 export async function mountData(){
     let pokeIndexes = Array.from({ length: self.consts.POKEMON_QTY }, (x, i) => i);
     pokeIndexes = pokeIndexes.slice(1, self.consts.POKEMON_QTY);
     let player1Indexes = [];
     let player2Indexes = [];
+    let player1Cards = [];
+    let player2Cards = [];
     for (let i = 0; i < self.consts.DECK_QTY; i++) {
         var randomItem = pokeIndexes[Math.floor(Math.random() * pokeIndexes.length)];
         player1Indexes.push(randomItem);
@@ -19,16 +19,16 @@ export async function mountData(){
     }
     for (const index of player1Indexes) {
         let singleCard = await mountSingleCard(index);
-        self.player1Cards.push(singleCard);
+        player1Cards.push(singleCard);
     }
     for (const index of player2Indexes) {
         let singleCard = await mountSingleCard(index);
-        self.player2Cards.push(singleCard);
+        player2Cards.push(singleCard);
     }
     let randomIndex = parseInt(Math.floor(Math.random() * self.consts.DECK_QTY));
     Math.random() >= 0.5 ? player1Cards[randomIndex].tier='SUPER TRUNFO' : player2Cards[randomIndex].tier='SUPER TRUNFO';    
     document.getElementById("loadingScreen").style.display = "none";
-    self.controllersLocked = false;
+    return[player1Cards,player2Cards]
 }
 
 async function mountSingleCard(index) {

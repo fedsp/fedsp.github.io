@@ -66,4 +66,26 @@ export function drawCursor(prevIndex,newIndex){
     newCursorDiv.className = "cursorCell cursorCellCurrent";
 }
 
+export function drawRoundBegin(){
+    for (let i=1;i<=2;i++){
+        let spriteDiv = document.getElementById(`player${i}PokemonTile`);
+        let frontOrBack = i==1?"Back":"Front";
+        spriteDiv.src = `./media/images/misteriousPokemon${frontOrBack}.png`;
+        let playerMenu = document.getElementById(`player${i}Menu`);
+        playerMenu.className = "hiddenElement";
+        let pokemonLabelDiv = document.getElementById(`player${i}Pokemon`);
+        let innerPokemonLabelDiv = pokemonLabelDiv.getElementsByTagName("div")[0];
+        innerPokemonLabelDiv.className = "hiddenElement";
+    }
+}
 
+
+export function drawPlayer1Turn(){
+   let pressStartDiv = document.getElementById("pressStart");
+   pressStartDiv.className = "hiddenElement";
+   let playerMenu = document.getElementById(`player1Menu`);
+   playerMenu.className = "";
+   let pokemonLabelDiv = document.getElementById(`player1Pokemon`);
+   let innerPokemonLabelDiv = pokemonLabelDiv.getElementsByTagName("div")[0];
+   innerPokemonLabelDiv.className = "pokemonLabels";
+}

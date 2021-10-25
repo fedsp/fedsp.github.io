@@ -1,26 +1,33 @@
-let { playRound } = await import("./round.js");
+
 let { attributeSelector } = await import("./selectAttribute.js");
 const attributeSelectorObj = new attributeSelector();
 
-export function keyboardInputController(evt){
-    
+export function keyboardInputController(evt, roundControllerObj) {
+
     evt = evt || window.event;
-    switch (evt.key) {
-        case "ArrowUp":
-            attributeSelectorObj.selectAttribute("up");
+    switch (roundControllerObj.gameState) {
+        case "notReadyToBegin":
+            return;
+        case "readyToBegin":
+            roundControllerObj.playRound();
             break;
-        case "ArrowDown":
-            attributeSelectorObj.selectAttribute("down");
+        case "roundStarted":
+            switch (evt.key) {
+                case "ArrowUp":
+                    attributeSelectorObj.selectAttribute("up");
+                    break;
+                case "ArrowDown":
+                    attributeSelectorObj.selectAttribute("down");
+                    break;
+                case "Enter":
+                    roundControllerObj.roundPlaceover();
+                    break;
+                default:
+                    return;
+            }
             break;
-        case "Enter":
-            if(self.player1Cards.length==self.consts.DECK_QTY){
-                playRound();
-            }
-            else{
-                let x = "";
-            }
-            break
         default:
             return;
     }
+
 }

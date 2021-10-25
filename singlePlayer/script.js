@@ -1,9 +1,11 @@
-let { mountData } = await import("./mountData.js");
+
 let { keyboardInputController } = await import("./keyboardInputController.js");
+const { roundController } = await import("./roundController.js");
+const roundControllerObj = new roundController();
 
 (() => {
     let rendered = false;
-    self.controllersLocked = true;
+    roundControllerObj.controllersLocked = true;
 
     self.consts = {
         POKEMON_QTY: 760,
@@ -15,25 +17,17 @@ let { keyboardInputController } = await import("./keyboardInputController.js");
         AVG_SP_DEF: 69.12
     }
 
-    self.player1Cards = [];
-    self.player2Cards = [];
-
     async function main() {
         if (rendered) {
             return;
         }
         await sleep(1);
-        mountData();
+        await roundControllerObj.beginMatch();
     }
 
     document.onkeydown = function (evt) {
-        if (controllersLocked) {
-            return;
-        }
-        keyboardInputController(evt);
+        keyboardInputController(evt,roundControllerObj);
     };
-
-
 
     window.doStuff = function () {
         playRound(player1Cards, player2Cards);
