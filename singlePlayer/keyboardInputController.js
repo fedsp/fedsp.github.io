@@ -1,6 +1,4 @@
 
-let { attributeSelector } = await import("./selectAttribute.js");
-const attributeSelectorObj = new attributeSelector();
 
 export function keyboardInputController(evt, roundControllerObj) {
 
@@ -9,18 +7,23 @@ export function keyboardInputController(evt, roundControllerObj) {
         case "notReadyToBegin":
             return;
         case "readyToBegin":
-            roundControllerObj.playRound();
+            if(evt.key=="Enter"){
+                roundControllerObj.beginMatch();
+            }
+            else{
+                return;
+            }
             break;
         case "roundStarted":
             switch (evt.key) {
                 case "ArrowUp":
-                    attributeSelectorObj.selectAttribute("up");
+                    roundControllerObj.attributeSelectorObj.selectAttribute("up");
                     break;
                 case "ArrowDown":
-                    attributeSelectorObj.selectAttribute("down");
+                    roundControllerObj.attributeSelectorObj.selectAttribute("down");
                     break;
                 case "Enter":
-                    roundControllerObj.roundPlaceover();
+                    roundControllerObj.confirmAttributeChoice();
                     break;
                 default:
                     return;

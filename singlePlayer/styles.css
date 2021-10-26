@@ -18,11 +18,11 @@ body, html {
     src: url(./media/fonts/ARCADECLASSIC.TTF);
 }
 
-.hiddenElement{
+.hiddenElement {
     display: none;
 }
 
-#loadingScreen{
+#loadingScreen {
     position: absolute;
     width: 100vw;
     height: 100vh;
@@ -30,12 +30,12 @@ body, html {
     z-index: 1;
 }
 
-#pokeballLoadingScreen{
+#pokeballLoadingScreen {
     position: absolute;
-    left: 0; 
-    right: 0; 
+    left: 0;
+    right: 0;
     top: 0;
-    bottom: 0; 
+    bottom: 0;
     margin: auto;
     width: 3072px;
     height: 256px;
@@ -46,32 +46,33 @@ body, html {
     animation: pokeballLoading 1s steps(12) infinite;
     z-index: -1;
 }
-@keyframes pokeballLoading{
-    0%{
-        left :0px;
+
+@keyframes pokeballLoading {
+    0% {
+        left: 0px;
     }
-    100%{
-        left :-3072px;
+    100% {
+        left: -3072px;
     }
 }
 
-#pokeballLoadingOverlay{
+#pokeballLoadingOverlay {
     position: absolute;
-    left: 0; 
-    right: 0; 
+    left: 0;
+    right: 0;
     top: 0;
-    bottom: 0; 
+    bottom: 0;
     margin: auto;
     width: 256px;
     height: 256px;
 }
 
-#pokeballLoadingOverlay2{
+#pokeballLoadingOverlay2 {
     position: absolute;
-    left: 0; 
-    right: 0; 
+    left: 0;
+    right: 0;
     top: 0;
-    bottom: 0; 
+    bottom: 0;
     margin: auto;
     width: 256px;
     height: 256px;
@@ -104,7 +105,7 @@ body, html {
     overflow: hidden;
 }
 
-#pressStart{
+#pressStart {
     background-image: url("./media/images/start.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -143,25 +144,24 @@ body, html {
     z-index: 4;
 }
 
-.glowingTrunfo{
-    animation: glowingPokemon 1s  infinite;
+.glowingTrunfo {
+    animation: glowingPokemon 1s infinite;
 }
 
 @keyframes glowingPokemon {
-    0%{
+    0% {
         -webkit-filter: drop-shadow(0px 0px 0 rgb(253, 71, 253)) drop-shadow(-0px -0px 0 rgb(253, 71, 253));
         filter: drop-shadow(0px 0px 0 rgb(253, 71, 253)) drop-shadow(-0px -0px 0 rgb(253, 71, 253));
     }
-    50%{
-        -webkit-filter: drop-shadow(.7vh .7vh .7vh rgba(253,71,253,1)) drop-shadow(-.7vh -.7vh .7vh rgba(253,71,253,1));
-        filter: drop-shadow(.7vh .7vh .7vh rgba(253,71,253,1)) drop-shadow(-.7vh -.7vh .7vh rgba(253,71,253,1));
+    50% {
+        -webkit-filter: drop-shadow(.7vh .7vh .7vh rgba(253, 71, 253, 1)) drop-shadow(-.7vh -.7vh .7vh rgba(253, 71, 253, 1));
+        filter: drop-shadow(.7vh .7vh .7vh rgba(253, 71, 253, 1)) drop-shadow(-.7vh -.7vh .7vh rgba(253, 71, 253, 1));
     }
-    100%{
+    100% {
         -webkit-filter: drop-shadow(0px 0px 0 rgb(253, 71, 253)) drop-shadow(-0px -0px 0 rgb(253, 71, 253));
         filter: drop-shadow(0px 0px 0 rgb(253, 71, 253)) drop-shadow(-0px -0px 0 rgb(253, 71, 253));
     }
 }
-
 
 #player1Menu {
     position: absolute;
@@ -180,7 +180,7 @@ body, html {
     height: 35vh;
     image-rendering: pixelated;
     position: absolute;
-    z-index:4;
+    z-index: 4;
     background-image: url("./media/images/menu_ally.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -193,10 +193,10 @@ body, html {
     height: 5.63vh;
     display: flex;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
 }
 
-.cursorCell{
+.cursorCell {
     font-family: pixel;
     font-size: 2.6vw;
     width: 2vw;
@@ -204,16 +204,16 @@ body, html {
     height: 5.63vh;
 }
 
-.cursorCellCurrent{
+.cursorCellCurrent {
     background-image: url("./media/images/cursor.png");
     background-repeat: no-repeat;
     image-rendering: pixelated;
     background-size: 100% 100%;
 }
 
-.playerTable{
+.playerTable {
     position: absolute;
-    z-index: 4;  
+    z-index: 4;
     border-collapse: collapse;
     right: -2vw;
 }
@@ -254,12 +254,12 @@ body, html {
 }
 
 .tierB {
-    background-color:#ffe564;
+    background-color: #ffe564;
     border-color: #ffaf34;
 }
 
 .tierC {
-    background-color:#dbdfe2;
+    background-color: #dbdfe2;
     border-color: #676c93;
 }
 
@@ -274,39 +274,39 @@ body, html {
     animation: glowTrunfoLabel 2s ease-in-out infinite;
 }
 
-@keyframes glowTrunfoLabel{
-    0%{
+@keyframes glowTrunfoLabel {
+    0% {
         border: solid 0.3vw black;
-        color:black ;
+        color: black;
     }
-    30%{
-        border: solid 0.3vw rgb(200,200,0);
-        color:rgb(200,200,0);
+    30% {
+        border: solid 0.3vw rgb(200, 200, 0);
+        color: rgb(200, 200, 0);
     }
-    70%{
-        border: solid 0.3vw rgb(200,200,0);
-        color:rgb(200,200,0);
+    70% {
+        border: solid 0.3vw rgb(200, 200, 0);
+        color: rgb(200, 200, 0);
     }
-    100%{
+    100% {
         border: solid 0.3vw black;
-        color:black;
+        color: black;
     }
 }
 
-.deck{
-    position:absolute;
+.deck {
+    position: absolute;
     bottom: 2vh;
 }
 
-#player1deck{
-    left:3vw;
+#player1deck {
+    left: 3vw;
 }
 
-#player2deck{
-    right:9vw;
+#player2deck {
+    right: 9vw;
 }
 
-.deckCard{
+.deckCard {
     width: 12vh;
     height: 12vh;
     background-size: 100% 100%;
@@ -314,3 +314,40 @@ body, html {
     image-rendering: pixelated;
 }
 
+.flip-card {
+    background-color: transparent;
+    width: 300px;
+    height: 300px;
+    perspective: 1000px;
+    
+  }
+
+  .flip-card img{
+    image-rendering: pixelated;
+  }
+  
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+  }
+  
+  .flip-card .flip-card-inner.flipped {
+    transform: rotateY(180deg);
+  }
+  
+  .flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  
+  
+  .flip-card-back {
+    transform: rotateY(180deg);
+  }

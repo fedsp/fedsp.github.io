@@ -1,9 +1,15 @@
-
 export function drawPlayerCard(player1Or2,card){
     let spriteDiv = document.getElementById(`player${player1Or2}PokemonTile`);
     let spriteUrl = (player1Or2==1?card.spriteBack:card.spriteFront);
     spriteDiv.src = spriteUrl;
     spriteDiv.className = card.tier=="SUPER TRUNFO"?"pokemonTile glowingTrunfo":"pokemonTile";
+
+    if(player1Or2==2){
+        let flipCardDiv = document.getElementById("flipCardId");  
+        let classList = flipCardDiv.classList;
+        classList.add("flipped");
+    }
+
     let pokeNameDiv = document.getElementById(`player${player1Or2}PokemonName`);
     pokeNameDiv.innerHTML = card.name;
     let pokeTierDiv = document.getElementById(`player${player1Or2}PokemonTier`);
@@ -76,6 +82,9 @@ export function drawRoundBegin(){
         let pokemonLabelDiv = document.getElementById(`player${i}Pokemon`);
         let innerPokemonLabelDiv = pokemonLabelDiv.getElementsByTagName("div")[0];
         innerPokemonLabelDiv.className = "hiddenElement";
+        if(i===2){
+            document.getElementById("flipCardId").classList.remove("flipped");
+        }     
     }
 }
 
@@ -88,4 +97,23 @@ export function drawPlayer1Turn(){
    let pokemonLabelDiv = document.getElementById(`player1Pokemon`);
    let innerPokemonLabelDiv = pokemonLabelDiv.getElementsByTagName("div")[0];
    innerPokemonLabelDiv.className = "pokemonLabels";
+}
+
+export function drawBattle(){
+    let player2Menu = document.getElementById(`player2Menu`);
+    player2Menu.className = "";
+    let pokemon2LabelDiv = document.getElementById(`player2Pokemon`);
+    let innerPokemonLabelDiv = pokemon2LabelDiv.getElementsByTagName("div")[0];
+    innerPokemonLabelDiv.className = "pokemonTileDiv";
+}
+
+export function hideEnemyCard(){
+    let spriteDiv = document.getElementById(`player2PokemonTile`);
+    spriteDiv.src = `./media/images/misteriousPokemonFront.png`;
+    let playerMenu = document.getElementById(`player2Menu`);
+    playerMenu.className = "hiddenElement";
+    let pokemonLabelDiv = document.getElementById(`player2Pokemon`);
+    let innerPokemonLabelDiv = pokemonLabelDiv.getElementsByTagName("div")[0];
+    innerPokemonLabelDiv.className = "hiddenElement";
+    document.getElementById("flipCardId").classList.remove("flipped");
 }

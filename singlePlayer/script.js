@@ -22,17 +22,13 @@ const roundControllerObj = new roundController();
             return;
         }
         await sleep(1);
-        await roundControllerObj.beginMatch();
+        await roundControllerObj.waitToBeginMatch();
     }
 
     document.onkeydown = function (evt) {
         keyboardInputController(evt,roundControllerObj);
     };
-
-    window.doStuff = function () {
-        playRound(player1Cards, player2Cards);
-    }
-
+  
     main();
 
     function sleep(ms) {

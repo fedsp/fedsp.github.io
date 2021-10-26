@@ -1,5 +1,8 @@
-let { drawPlayerCard, drawDeck , drawRoundBegin, drawPlayer1Turn } = await import("./drawer.js");
+let { drawPlayerCard, drawDeck , drawRoundBegin, drawPlayer1Turn, drawBattle , hideEnemyCard} = await import("./drawer.js");
 let { mountData } = await import("./mountData.js");
+let { attributeSelector } = await import("./selectAttribute.js");
+let { battle } = await import("./battleController.js");
+
 
 const optionSelectedAudio = new Audio('./media/audio/menu_confirm.wav');
 
@@ -9,11 +12,12 @@ export class roundController{
         //notReadyToBegin
         //readyToBegin
         //roundStarted
-        //optionChosen
+        //attributeChosen
         this.gameState = "notReadyToBegin";
+        this.attributeSelectorObj = new attributeSelector();
     }
 
-    async beginMatch(){        
+    async waitToBeginMatch(){        
         const cards =  await mountData();
         this.player1Cards = cards[0];
         this.player2Cards = cards[1];    
@@ -21,19 +25,43 @@ export class roundController{
         this.gameState = "readyToBegin";
     }
 
-    playRound(){
-        this.gameState = "roundStarted";
-        optionSelectedAudio.play();
+    beginMatch(){        
+        optionSelectedAudio.play();     
+        this.gameState = "roundStarted"; 
+        this.roundStart();
+    }
+
+    roundStart(){
         drawPlayer1Turn();
         drawDeck(1,this.player1Cards);
         drawDeck(2,this.player2Cards);
-        let player1Card = this.player1Cards[Math.floor(Math.random()*this.player1Cards.length)];
-        drawPlayerCard(1,player1Card);
-    }
+        this.player1Card = this.player1Cards[this.player1Cards.length-1];
+        drawPlayerCard(1,this.player1Card);   
+    } 
 
-    roundPlaceover(){        
-        let player2Card = this.player2Cards[Math.floor(Math.random()*this.player2Cards.length)];
-        drawPlayerCard(2,player2Card);        
+    confirmAttributeChoice(){     
+        this.gameState = "attributeChosen";   
+        this.player2Card = this.player2Cards[this.player2Cards.length-1];
+        drawPlayerCard(2,this.player2Card);   
+        let battleResult = battle(this.player1Card,this.player2Card,this.attributeSelectorObj.currentSelection);
+        let card
+        switch(battleResult){
+            case 1:
+                card = this.player2Cards.pop();
+                this.player1Cards.unshift(card);
+                break;
+            case 2:
+                card = this.player1Cards.pop();
+                this.player2Cards.unshift(card);
+                break;
+            case 3:
+                break;
+        }
+        console.log(this.player1Cards);
+        drawBattle();        
+        hideEnemyCard(2); 
+        this.gameState = "roundStarted";
+        this.roundStart();
     }
     
 }
