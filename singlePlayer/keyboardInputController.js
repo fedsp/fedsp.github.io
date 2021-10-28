@@ -1,6 +1,6 @@
 
 
-export function keyboardInputController(evt, roundControllerObj) {
+export async function keyboardInputController(evt, roundControllerObj) {
 
     evt = evt || window.event;
     switch (roundControllerObj.gameState) {
@@ -23,7 +23,7 @@ export function keyboardInputController(evt, roundControllerObj) {
                     roundControllerObj.attributeSelectorObj.selectAttribute("down");
                     break;
                 case "Enter":
-                    roundControllerObj.confirmAttributeChoice();
+                    await roundControllerObj.confirmAttributeChoice();
                     break;
                 default:
                     return;

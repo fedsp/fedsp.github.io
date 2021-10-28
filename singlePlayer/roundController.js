@@ -39,7 +39,7 @@ export class roundController{
         drawPlayerCard(1,this.player1Card);   
     } 
 
-    confirmAttributeChoice(){     
+    async confirmAttributeChoice(){     
         this.gameState = "attributeChosen";   
         this.player2Card = this.player2Cards[this.player2Cards.length-1];
         drawPlayerCard(2,this.player2Card);   
@@ -57,8 +57,7 @@ export class roundController{
             case 3:
                 break;
         }
-        console.log(this.player1Cards);
-        drawBattle();        
+        await drawBattle();        
         hideEnemyCard(2); 
         this.gameState = "roundStarted";
         this.roundStart();

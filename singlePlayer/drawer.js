@@ -1,3 +1,5 @@
+let { sleep } = await import("./utils.js");
+
 export function drawPlayerCard(player1Or2,card){
     let spriteDiv = document.getElementById(`player${player1Or2}PokemonTile`);
     let spriteUrl = (player1Or2==1?card.spriteBack:card.spriteFront);
@@ -99,7 +101,10 @@ export function drawPlayer1Turn(){
    innerPokemonLabelDiv.className = "pokemonLabels";
 }
 
-export function drawBattle(){
+export async function drawBattle(){
+    console.log("Pikachu used thundershock...");
+    await sleep(2000);
+    console.log("It was very effective!!!");
     let player2Menu = document.getElementById(`player2Menu`);
     player2Menu.className = "";
     let pokemon2LabelDiv = document.getElementById(`player2Pokemon`);
