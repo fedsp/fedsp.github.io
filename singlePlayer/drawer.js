@@ -1,5 +1,14 @@
 let { sleep } = await import("./utils.js");
 
+export async function drawLoading(){
+    console.log("1");
+    await sleep(10000);
+    console.log("1");
+    await sleep(10000);
+    console.log("1");
+    await sleep(10000);
+}
+
 export function drawPlayerCard(player1Or2,card){
     let spriteDiv = document.getElementById(`player${player1Or2}PokemonTile`);
     let spriteUrl = (player1Or2==1?card.spriteBack:card.spriteFront);

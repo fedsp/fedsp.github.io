@@ -1,4 +1,4 @@
-let { drawPlayerCard, drawDeck , drawRoundBegin, drawPlayer1Turn, drawBattle , hideEnemyCard} = await import("./drawer.js");
+let { drawLoading , drawPlayerCard, drawDeck , drawRoundBegin, drawPlayer1Turn, drawBattle , hideEnemyCard} = await import("./drawer.js");
 let { mountData } = await import("./mountData.js");
 let { attributeSelector } = await import("./selectAttribute.js");
 let { battle } = await import("./battleController.js");
@@ -17,10 +17,11 @@ export class roundController{
         this.attributeSelectorObj = new attributeSelector();
     }
 
-    async waitToBeginMatch(){        
-        const cards =  await mountData();
+    async waitToBeginMatch(){   
+        await drawLoading();      
+        const cards =  await mountData();        
         this.player1Cards = cards[0];
-        this.player2Cards = cards[1];    
+        this.player2Cards = cards[1];  
         drawRoundBegin();
         this.gameState = "readyToBegin";
     }

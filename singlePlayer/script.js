@@ -3,8 +3,6 @@ let { sleep } = await import("./utils.js");
 let { keyboardInputController } = await import("./keyboardInputController.js");
 const { roundController } = await import("./roundController.js");
 const roundControllerObj = new roundController();
-
-let rendered = false;
 roundControllerObj.controllersLocked = true;
 
 self.consts = {
@@ -18,10 +16,6 @@ self.consts = {
 }
 
 async function main() {
-    if (rendered) {
-        return;
-    }
-    await sleep(1);
     await roundControllerObj.waitToBeginMatch();
 }
 
@@ -29,7 +23,7 @@ document.onkeydown = async function (evt) {
     await keyboardInputController(evt, roundControllerObj);
 };
 
-main();
+await main();
 
 
 

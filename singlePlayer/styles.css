@@ -80,6 +80,24 @@ body, html {
     z-index: 4;
 }
 
+#loadingBar {
+    width: 100%;
+    height: 100%;
+    image-rendering: pixelated;
+}
+
+#LoadingBarOverlay{
+    width: 30vw;
+    height: 4vh;
+    position: absolute;
+    z-index: 6;
+    top:50vh;
+    bottom:0;
+    right:0;
+    left:0;
+    margin: auto;
+}
+
 .mainContainer {
     position: absolute;
     z-index: 0;
