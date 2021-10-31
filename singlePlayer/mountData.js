@@ -26,8 +26,8 @@ export async function mountData(){
         player2Cards.push(singleCard);
     }
     let randomIndex = parseInt(Math.floor(Math.random() * self.consts.DECK_QTY));
-    Math.random() >= 0.5 ? player1Cards[randomIndex].tier='SUPER TRUNFO' : player2Cards[randomIndex].tier='SUPER TRUNFO';    
-    document.getElementById("loadingScreen").style.display = "none";
+    Math.random() >= 0.5 ? player1Cards[randomIndex].tier='SUPER TRUNFO' : player2Cards[randomIndex].tier='SUPER TRUNFO';   
+    
     return[player1Cards,player2Cards]
 }
 

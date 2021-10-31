@@ -1,4 +1,4 @@
-let { drawLoading , drawPlayerCard, drawDeck , drawRoundBegin, drawPlayer1Turn, drawBattle , hideEnemyCard} = await import("./drawer.js");
+let { drawLoading , updateProgressBar , drawLoadAssets, drawPlayerCard, drawDeck , drawRoundBegin, drawPlayer1Turn, drawBattle , hideEnemyCard} = await import("./drawer.js");
 let { mountData } = await import("./mountData.js");
 let { attributeSelector } = await import("./selectAttribute.js");
 let { battle } = await import("./battleController.js");
@@ -19,9 +19,11 @@ export class roundController{
 
     async waitToBeginMatch(){   
         await drawLoading();      
-        const cards =  await mountData();        
+        const cards =  await mountData();    
+        await updateProgressBar(30);    
         this.player1Cards = cards[0];
-        this.player2Cards = cards[1];  
+        this.player2Cards = cards[1];
+        await drawLoadAssets(this.player1Cards,this.player2Cards);  
         drawRoundBegin();
         this.gameState = "readyToBegin";
     }
@@ -45,15 +47,20 @@ export class roundController{
         this.player2Card = this.player2Cards[this.player2Cards.length-1];
         drawPlayerCard(2,this.player2Card);   
         let battleResult = battle(this.player1Card,this.player2Card,this.attributeSelectorObj.currentSelection);
-        let card
+        let card;
+        let tempCard;
         switch(battleResult){
             case 1:
                 card = this.player2Cards.pop();
                 this.player1Cards.unshift(card);
+                tempCard = this.player1Cards.pop();
+                this.player1Cards.unshift(tempCard);
                 break;
             case 2:
                 card = this.player1Cards.pop();
                 this.player2Cards.unshift(card);
+                tempCard = this.player2Cards.pop();
+                this.player2Cards.unshift(tempCard);
                 break;
             case 3:
                 break;

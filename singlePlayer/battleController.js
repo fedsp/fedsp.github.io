@@ -1,4 +1,5 @@
 const intToAttribute = [
+    "hp",
     "attack",
     "defense",
     "spAttack",
