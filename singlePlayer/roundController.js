@@ -1,4 +1,4 @@
-let { updateProgressBar, drawLoadAssets, drawPlayerCard, drawDeck, drawRoundBegin, drawPlayer1Turn, drawBattle, drawTieArea, hideEnemyCard } = await import("./drawer.js");
+let { updateProgressBar, drawLoadAssets, drawPlayerCard, drawDeck, drawRoundBegin, drawPlayer1Turn, drawBattle, drawTieArea, hideEnemyCard , drawGameWin , drawGameOver} = await import("./drawer.js");
 let { mountData } = await import("./mountData.js");
 let { attributeSelector } = await import("./selectAttribute.js");
 let { battle } = await import("./battleController.js");
@@ -20,6 +20,7 @@ export class roundController {
         this.tieCards = [];
         this.currentTurn = 1;
         this.robotEnemyObj = new robotEnemy();
+        this.enemyAtrributeSelected;
     }
 
     async waitToBeginMatch() {
@@ -41,7 +42,14 @@ export class roundController {
     async startBattle() {
         this.player2Card = this.player2Cards[this.player2Cards.length - 1];
         drawPlayerCard(2, this.player2Card);
-        let battleResult = battle(this.player1Card, this.player2Card, this.attributeSelectorObj.currentSelection);
+        let battleResult = battle(
+            this.player1Card,
+            this.player2Card,
+            this.currentTurn==1?
+                this.attributeSelectorObj.currentSelection
+                :
+                this.enemyAtrributeSelected
+        );
         let card;
         let tempCard;
         switch (battleResult) {
@@ -94,9 +102,12 @@ export class roundController {
         drawDeck(1, this.player1Cards);
         drawDeck(2, this.player2Cards);
         this.player1Card = this.player1Cards[this.player1Cards.length - 1];
+        if( this.player1Card.hp == undefined){
+            console.log("oie");
+        }
         drawPlayerCard(1, this.player1Card);
         if (this.currentTurn == 2) {
-            this.attributeSelectorObj.currentSelection = this.robotEnemyObj.automaticPlayTurn(
+            this.enemyAtrributeSelected = this.robotEnemyObj.automaticPlayTurn(
                 this.player2Cards[this.player2Cards.length - 1]
             );
             this.gameState = "attributeChosen";
