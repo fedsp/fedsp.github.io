@@ -15,6 +15,9 @@ export async function keyboardInputController(evt, roundControllerObj) {
             }
             break;
         case "roundStarted":
+            if(roundControllerObj.currentTurn!=1){
+                return;
+            }
             switch (evt.key) {
                 case "ArrowUp":
                     roundControllerObj.attributeSelectorObj.selectAttribute("up");

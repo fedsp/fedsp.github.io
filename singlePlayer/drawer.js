@@ -1,13 +1,5 @@
 let { sleep } = await import("./utils.js");
 
-export async function drawLoading() {
-    await sleep(5000);
-    // console.log("1");
-    // await sleep(10000);
-    // console.log("1");
-    // await sleep(10000);
-}
-
 export async function drawLoadAssets(deck1, deck2) {
     let assetDiv = document.getElementById("assetPreloadDiv");
     [deck1, deck2].forEach(function (deck, deckNumber) {
@@ -177,4 +169,32 @@ export function hideEnemyCard() {
     let innerPokemonLabelDiv = pokemonLabelDiv.getElementsByTagName("div")[0];
     innerPokemonLabelDiv.className = "hiddenElement";
     document.getElementById("flipCardId").classList.remove("flipped");
+}
+
+export function drawTieArea(tieCards){
+    let tieAreaDiv = document.getElementById("tieAreaDiv");
+    let internalTieAreaDiv = document.getElementById("internalTieAreaDiv");
+    internalTieAreaDiv.innerHTML = "";
+    if(tieCards.length>0){
+        tieAreaDiv.className = "";
+        tieCards.forEach((tieCard)=>{
+            const miniPoke = document.createElement("img");
+            miniPoke.src = tieCard.spriteFront;
+            miniPoke.className = "tieAreaPokemon";
+            internalTieAreaDiv.appendChild(miniPoke);
+        })
+    }
+    else{
+        tieAreaDiv.className = "hiddenElement";
+    }
+}
+
+export function drawGameWin(){
+    let gameWinOverlay = document.getElementById("gameWinOverlay");
+    gameWinOverlay.classList.remove("hiddenElement");
+}
+
+export function drawGameOver(){
+    let gameOverOverlay = document.getElementById("gameOverOverlay");
+    gameOverOverlay.classList.remove("hiddenElement");
 }

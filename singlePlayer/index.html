@@ -9,6 +9,7 @@
     <script src='./keyboardInputController.js' async type="module"></script>
     <script src='./battleController.js' async type="module"></script>
     <script src='./utils.js' async type="module"></script>
+    <script src='./robotEnemyPlayer.js' async type="module"></script>
 </head>
 
 <body>
@@ -23,7 +24,7 @@
             <div>
                 <img id="loadingBarFill" src="./media/images/loadingBarFill.png">
             </div>
-            
+
         </div>
     </div>
     <div class="background"></div>
@@ -40,28 +41,52 @@
             <div class="menuTile">
                 <table id="player1Table" class="playerTable">
                     <tr class="hpRow">
-                        <td><div class="scoreItem"></div></td>
-                        <td><div class="cursorCell cursorCellCurrent"></div></td>
+                        <td>
+                            <div class="scoreItem"></div>
+                        </td>
+                        <td>
+                            <div class="cursorCell cursorCellCurrent"></div>
+                        </td>
                     </tr>
                     <tr class="attackRow">
-                        <td><div class="scoreItem"></div></td>
-                        <td><div class="cursorCell"></div></td>
+                        <td>
+                            <div class="scoreItem"></div>
+                        </td>
+                        <td>
+                            <div class="cursorCell"></div>
+                        </td>
                     </tr>
                     <tr class="defenseRow">
-                        <td><div class="scoreItem"></div></td>
-                        <td><div class="cursorCell"></div></td>
+                        <td>
+                            <div class="scoreItem"></div>
+                        </td>
+                        <td>
+                            <div class="cursorCell"></div>
+                        </td>
                     </tr>
                     <tr class="spAttackRow">
-                        <td> <div class="scoreItem"></div></td>
-                        <td><div class="cursorCell"></div></td>
+                        <td>
+                            <div class="scoreItem"></div>
+                        </td>
+                        <td>
+                            <div class="cursorCell"></div>
+                        </td>
                     </tr>
                     <tr class="spDefenseRow">
-                        <td><div class="scoreItem"></div></td>
-                        <td><div class="cursorCell"></div></td>
+                        <td>
+                            <div class="scoreItem"></div>
+                        </td>
+                        <td>
+                            <div class="cursorCell"></div>
+                        </td>
                     </tr>
                     <tr class="weightRow">
-                        <td><div class="scoreItem"></div></td>
-                        <td><div class="cursorCell"></div></td>
+                        <td>
+                            <div class="scoreItem"></div>
+                        </td>
+                        <td>
+                            <div class="cursorCell"></div>
+                        </td>
                     </tr>
                 </table>
             </div>
@@ -73,51 +98,82 @@
                 <div class="pokemonTier" id="player2PokemonTier">A</div>
             </div>
 
-            
+
             <div class="flip-card">
                 <div class="flip-card-inner" id="flipCardId">
-                  <div class="flip-card-front">
-                    <img id="player2PokemonTileFlipped"src="media/images/misteriousPokemonFront.png" style="width:300px;height:300px;">
-                  </div>
-                  <div class="flip-card-back pokemonTile">
-                    <img id="player2PokemonTile" src="media/images/genericPokemonFront.png" style="width:300px;height:300px;">
-                  </div>
+                    <div class="flip-card-front">
+                        <img id="player2PokemonTileFlipped" src="media/images/misteriousPokemonFront.png"
+                            style="width:300px;height:300px;">
+                    </div>
+                    <div class="flip-card-back pokemonTile">
+                        <img id="player2PokemonTile" src="media/images/genericPokemonFront.png"
+                            style="width:300px;height:300px;">
+                    </div>
                 </div>
             </div>
         </div>
-
         <div id="player2Menu">
             <div class="menuTile">
                 <table id="player2Table" class="playerTable">
                     <tr class="hpRow">
-                        <td><div class="scoreItem"></div></td>
-                        <td><div class="cursorCell"></div></td>
+                        <td>
+                            <div class="scoreItem"></div>
+                        </td>
+                        <td>
+                            <div class="cursorCell"></div>
+                        </td>
                     </tr>
                     <tr class="attackRow">
-                        <td><div class="scoreItem"></div></td>
-                        <td><div class="cursorCell"></div></td>
+                        <td>
+                            <div class="scoreItem"></div>
+                        </td>
+                        <td>
+                            <div class="cursorCell"></div>
+                        </td>
                     </tr>
                     <tr class="defenseRow">
-                        <td><div class="scoreItem"></div></td>
-                        <td><div class="cursorCell"></div></td>
+                        <td>
+                            <div class="scoreItem"></div>
+                        </td>
+                        <td>
+                            <div class="cursorCell"></div>
+                        </td>
                     </tr>
                     <tr class="spAttackRow">
-                        <td> <div class="scoreItem"></div></td>
-                        <td><div class="cursorCell"></div></td>
+                        <td>
+                            <div class="scoreItem"></div>
+                        </td>
+                        <td>
+                            <div class="cursorCell"></div>
+                        </td>
                     </tr>
                     <tr class="spDefenseRow">
-                        <td><div class="scoreItem"></div></td>
-                        <td><div class="cursorCell"></div></td>
+                        <td>
+                            <div class="scoreItem"></div>
+                        </td>
+                        <td>
+                            <div class="cursorCell"></div>
+                        </td>
                     </tr>
                     <tr class="weightRow">
-                        <td><div class="scoreItem"></div></td>
-                        <td><div class="cursorCell"></div></td>
+                        <td>
+                            <div class="scoreItem"></div>
+                        </td>
+                        <td>
+                            <div class="cursorCell"></div>
+                        </td>
                     </tr>
                 </table>
             </div>
         </div>
         <div class="deck" id="player2deck"></div>
+        <div id="tieAreaDiv" class="hiddenElement">
+            <img id="tieAreaSprite" src="media/images/tieArea.png">
+            <div id="internalTieAreaDiv">
+            </div>
+        </div>
     </div>
-    </div>
+    <div id=gameWinOverlay class="hiddenElement"></div>
+    <div id=gameOverOverlay class="hiddenElement"></div>
 </body>
 <html>
