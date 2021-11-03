@@ -47,25 +47,28 @@ async function checkAssetLoadingProgress() {
     }
 }
 
-export function drawPlayerCard(player1Or2, card) {
+export async function drawPlayerCard(player1Or2, card) {
+    let menuDiv = document.getElementById(`player${player1Or2}Menu`);
+    menuDiv.className = "";
     let spriteDiv = document.getElementById(`player${player1Or2}PokemonTile`);
     let spriteUrl = (player1Or2 == 1 ? card.spriteBack : card.spriteFront);
     spriteDiv.src = spriteUrl;
     spriteDiv.className = card.tier == "SUPER TRUNFO" ? "pokemonTile glowingTrunfo" : "pokemonTile";
-
     if (player1Or2 == 2) {
         let flipCardDiv = document.getElementById("flipCardId");
         let classList = flipCardDiv.classList;
         classList.add("flipped");
+        await sleep(1000);
     }
-
+    let pokeContainerDiv = document.getElementById(`player${player1Or2}Pokemon`);
+    let labelsDiv = pokeContainerDiv.getElementsByTagName("div")[0];
+    labelsDiv.className = "pokemonLabels";
     let pokeNameDiv = document.getElementById(`player${player1Or2}PokemonName`);
     pokeNameDiv.innerHTML = card.name;
     let pokeTierDiv = document.getElementById(`player${player1Or2}PokemonTier`);
     pokeTierDiv.innerHTML = card.tier;
     pokeTierDiv.className = card.tier == "SUPER TRUNFO" ? "tierSuperTrunfo pokemonTier" : `tier${card.tier} pokemonTier`;
     let menuTableDiv = document.getElementById(`player${player1Or2}Table`);
-
     let hpRow = menuTableDiv.getElementsByClassName(`hpRow`)[0];
     let hpDiv = hpRow.getElementsByClassName("scoreItem")[0];
     hpDiv.innerHTML = card.hp;
@@ -150,14 +153,7 @@ export function drawPlayer1Turn() {
 }
 
 export async function drawBattle() {
-    console.log("Pikachu used thundershock...");
-    await sleep(2000);
-    console.log("It was very effective!!!");
-    let player2Menu = document.getElementById(`player2Menu`);
-    player2Menu.className = "";
-    let pokemon2LabelDiv = document.getElementById(`player2Pokemon`);
-    let innerPokemonLabelDiv = pokemon2LabelDiv.getElementsByTagName("div")[0];
-    innerPokemonLabelDiv.className = "pokemonTileDiv";
+    await sleep(1);
 }
 
 export function hideEnemyCard() {

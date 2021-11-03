@@ -8,7 +8,7 @@ export async function keyboardInputController(evt, roundControllerObj) {
             return;
         case "readyToBegin":
             if(evt.key=="Enter"){
-                roundControllerObj.beginMatch();
+                await roundControllerObj.beginMatch();
             }
             else{
                 return;

@@ -1,0 +1,54 @@
+.player1PokemonTileAttacking {
+    animation: player1Attack 1s;
+}
+
+@keyframes player1Attack {
+    0% {
+        bottom: 0vh;
+        left: 0vw;
+    }
+    50% {
+        bottom: 3vh;
+        transform: rotate(5deg);
+        left: 2vw;
+    }
+    100% {
+        bottom: 0vh;
+        left: 0vw;
+    }
+}
+
+.player2PokemonTileDefending {
+    animation: player2Defending 1s;
+}
+
+@keyframes player2Defending {
+    0% {
+        filter: none;
+    }
+    30% {
+        filter: brightness(20) grayscale(1);
+        /* transform: rotate(15deg); */
+    }
+    40% {
+        filter: none;
+    }
+    50% {
+        filter: brightness(20) grayscale(1);
+        /* transform: rotate(15deg); */
+    }
+    60% {
+        filter: none;
+    }
+    70% {
+        filter: brightness(20) grayscale(1);
+        /* transform: rotate(15deg); */
+    }
+    80% {
+        filter: none;
+    }
+    /* transform: rotate(15deg); */
+    100% {
+        filter: none;
+    }
+}

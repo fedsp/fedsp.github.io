@@ -2,6 +2,7 @@
 
 <head>
     <link href="./styles.css" rel="stylesheet">
+    <link href="./animations.css" rel="stylesheet">
     <meta charset='utf-8' />
     <script src='./script.js' async type="module"></script>
     <script src='./roundController.js' async type="module"></script>
@@ -10,6 +11,7 @@
     <script src='./battleController.js' async type="module"></script>
     <script src='./utils.js' async type="module"></script>
     <script src='./robotEnemyPlayer.js' async type="module"></script>
+    <script src='./animationsController.js' async type="module"></script>
 </head>
 
 <body>
@@ -102,12 +104,10 @@
             <div class="flip-card">
                 <div class="flip-card-inner" id="flipCardId">
                     <div class="flip-card-front">
-                        <img id="player2PokemonTileFlipped" src="media/images/misteriousPokemonFront.png"
-                            style="width:300px;height:300px;">
+                        <img id="player2PokemonTileFlipped" class="pokemonTile" src="media/images/misteriousPokemonFront.png">
                     </div>
                     <div class="flip-card-back pokemonTile">
-                        <img id="player2PokemonTile" src="media/images/genericPokemonFront.png"
-                            style="width:300px;height:300px;">
+                        <img id="player2PokemonTile" class="pokemonTile" src="media/images/genericPokemonFront.png">
                     </div>
                 </div>
             </div>

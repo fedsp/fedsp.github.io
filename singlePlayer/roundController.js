@@ -1,9 +1,9 @@
-let { updateProgressBar, drawLoadAssets, drawPlayerCard, drawDeck, drawRoundBegin, drawPlayer1Turn, drawBattle, drawTieArea, hideEnemyCard , drawGameWin , drawGameOver} = await import("./drawer.js");
+let { updateProgressBar, drawLoadAssets, drawPlayerCard, drawDeck, drawRoundBegin, drawPlayer1Turn, drawBattle, drawTieArea, hideEnemyCard, drawGameWin, drawGameOver } = await import("./drawer.js");
 let { mountData } = await import("./mountData.js");
 let { attributeSelector } = await import("./selectAttribute.js");
 let { battle } = await import("./battleController.js");
 let { robotEnemy } = await import("./robotEnemyPlayer.js");
-
+let { animationsController } = await import("./animationsController.js")
 
 const optionSelectedAudio = new Audio('./media/audio/menu_confirm.wav');
 
@@ -21,6 +21,7 @@ export class roundController {
         this.currentTurn = 1;
         this.robotEnemyObj = new robotEnemy();
         this.enemyAtrributeSelected;
+        this.animationsObj = new animationsController();
     }
 
     async waitToBeginMatch() {
@@ -33,22 +34,25 @@ export class roundController {
         this.gameState = "readyToBegin";
     }
 
-    beginMatch() {
+    async beginMatch() {
         optionSelectedAudio.play();
         this.gameState = "roundStarted";
-        this.roundStart();
+        await this.roundStart();
     }
 
     async startBattle() {
         this.player2Card = this.player2Cards[this.player2Cards.length - 1];
         drawPlayerCard(2, this.player2Card);
-        let battleResult = battle(
-            this.player1Card,
-            this.player2Card,
-            this.currentTurn==1?
+        let roundAttribute = (
+            this.currentTurn == 1 ?
                 this.attributeSelectorObj.currentSelection
                 :
                 this.enemyAtrributeSelected
+        )
+        let battleResult = battle(
+            this.player1Card,
+            this.player2Card,
+            roundAttribute
         );
         let card;
         let tempCard;
@@ -58,8 +62,10 @@ export class roundController {
                 this.player1Cards.unshift(card);
                 tempCard = this.player1Cards.pop();
                 this.player1Cards.unshift(tempCard);
-                this.player1Cards.unshift(this.tieCards);
-                this.tieCards = [];
+                if (this.tieCards.length > 0) {
+                    this.player1Cards.unshift(...this.tieCards);
+                    this.tieCards = [];
+                }
                 this.currentTurn = 1;
                 break;
             case 2:
@@ -67,8 +73,10 @@ export class roundController {
                 this.player2Cards.unshift(card);
                 tempCard = this.player2Cards.pop();
                 this.player2Cards.unshift(tempCard);
-                this.player2Cards.unshift(this.tieCards);
-                this.tieCards = [];
+                if (this.tieCards.length > 0) {
+                    this.player2Cards.unshift(...this.tieCards);
+                    this.tieCards = [];
+                }
                 this.currentTurn = 2;
                 break;
             case 3:
@@ -81,19 +89,24 @@ export class roundController {
                 break;
         }
         drawTieArea(this.tieCards);
+        await drawPlayerCard(2,this.player2Card);
+        this.currentTurn==1?
+            await this.animationsObj.player1Attack()
+            :
+            await this.animationsObj.player2Attack();
         await drawBattle();
         hideEnemyCard(2);
         this.gameState = "roundStarted";
         this.roundStart();
     }
 
-    roundStart() {
-        if(this.player1Cards.length == 0){
+    async roundStart() {
+        if (this.player1Cards.length == 0) {
             drawGameOver();
             this.gameState = "gameEnd";
             return;
         }
-        else if(this.player2Cards.length == 0){
+        else if (this.player2Cards.length == 0) {
             drawGameWin();
             this.gameState = "gameEnd";
             return;
@@ -102,10 +115,7 @@ export class roundController {
         drawDeck(1, this.player1Cards);
         drawDeck(2, this.player2Cards);
         this.player1Card = this.player1Cards[this.player1Cards.length - 1];
-        if( this.player1Card.hp == undefined){
-            console.log("oie");
-        }
-        drawPlayerCard(1, this.player1Card);
+        await drawPlayerCard(1, this.player1Card);
         if (this.currentTurn == 2) {
             this.enemyAtrributeSelected = this.robotEnemyObj.automaticPlayTurn(
                 this.player2Cards[this.player2Cards.length - 1]
