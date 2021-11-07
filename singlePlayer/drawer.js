@@ -50,16 +50,11 @@ async function checkAssetLoadingProgress() {
 export async function drawPlayerCard(player1Or2, card) {
     let menuDiv = document.getElementById(`player${player1Or2}Menu`);
     menuDiv.className = "";
-    let spriteDiv = document.getElementById(`player${player1Or2}PokemonTile`);
+    let spriteImg = document.getElementById(`player${player1Or2}PokemonTile`);
     let spriteUrl = (player1Or2 == 1 ? card.spriteBack : card.spriteFront);
-    spriteDiv.src = spriteUrl;
-    spriteDiv.className = card.tier == "SUPER TRUNFO" ? "pokemonTile glowingTrunfo" : "pokemonTile";
-    if (player1Or2 == 2) {
-        let flipCardDiv = document.getElementById("flipCardId");
-        let classList = flipCardDiv.classList;
-        classList.add("flipped");
-        await sleep(1000);
-    }
+    spriteImg.src = spriteUrl;
+    spriteImg.className = card.tier == "SUPER TRUNFO" ? "pokemonTile glowingTrunfo" : "pokemonTile";
+
     let pokeContainerDiv = document.getElementById(`player${player1Or2}Pokemon`);
     let labelsDiv = pokeContainerDiv.getElementsByTagName("div")[0];
     labelsDiv.className = "pokemonLabels";
@@ -92,7 +87,9 @@ export async function drawPlayerCard(player1Or2, card) {
     let weightRow = menuTableDiv.getElementsByClassName(`weightRow`)[0];
     let weightDiv = weightRow.getElementsByClassName("scoreItem")[0];
     weightDiv.innerHTML = card.weight;
-
+    if (player1Or2 == 2) {
+        showEnemyCardFront();
+    }
 }
 
 export function drawDeck(player1Or2, deck) {
@@ -127,16 +124,16 @@ export function drawCursor(prevIndex, newIndex) {
 
 export function drawRoundBegin() {
     for (let i = 1; i <= 2; i++) {
-        let spriteDiv = document.getElementById(`player${i}PokemonTile`);
+        let spriteImg = document.getElementById(`player${i}PokemonTile`);
         let frontOrBack = i == 1 ? "Back" : "Front";
-        spriteDiv.src = `./media/images/misteriousPokemon${frontOrBack}.png`;
+        spriteImg.src = `./media/images/misteriousPokemon${frontOrBack}.png`;
         let playerMenu = document.getElementById(`player${i}Menu`);
         playerMenu.className = "hiddenElement";
         let pokemonLabelDiv = document.getElementById(`player${i}Pokemon`);
         let innerPokemonLabelDiv = pokemonLabelDiv.getElementsByTagName("div")[0];
-        innerPokemonLabelDiv.className = "hiddenElement";
-        if (i === 2) {
-            document.getElementById("flipCardId").classList.remove("flipped");
+        innerPokemonLabelDiv.className = "pokemonLabels hiddenElement";
+        if(i==2){
+            showEnemyCardFront();
         }
     }
 }
@@ -156,15 +153,15 @@ export async function drawBattle() {
     await sleep(1);
 }
 
-export function hideEnemyCard() {
-    let spriteDiv = document.getElementById(`player2PokemonTile`);
-    spriteDiv.src = `./media/images/misteriousPokemonFront.png`;
+export async function hideEnemyCard() {
+    let spriteImg = document.getElementById(`player2PokemonTile`);
+    spriteImg.src = `./media/images/misteriousPokemonFront.png`;
+    await showEnemyCardBack();
     let playerMenu = document.getElementById(`player2Menu`);
     playerMenu.className = "hiddenElement";
     let pokemonLabelDiv = document.getElementById(`player2Pokemon`);
     let innerPokemonLabelDiv = pokemonLabelDiv.getElementsByTagName("div")[0];
-    innerPokemonLabelDiv.className = "hiddenElement";
-    document.getElementById("flipCardId").classList.remove("flipped");
+    innerPokemonLabelDiv.className = "hiddenElement pokemonLabels";
 }
 
 export function drawTieArea(tieCards){
@@ -193,4 +190,19 @@ export function drawGameWin(){
 export function drawGameOver(){
     let gameOverOverlay = document.getElementById("gameOverOverlay");
     gameOverOverlay.classList.remove("hiddenElement");
+}
+
+export function showEnemyCardFront(){
+    const enemyCardBackDiv = document.getElementById("enemyCardBackDiv");
+    enemyCardBackDiv.className = "enemyCardBackDivAppear";
+    const enemyCardFrontDiv = document.getElementById("enemyCardFrontDiv");
+    enemyCardFrontDiv.className = "enemyCardFrontDivhide";
+}
+
+
+export function showEnemyCardBack(){
+    const enemyCardFrontDiv = document.getElementById("enemyCardFrontDiv");
+    enemyCardFrontDiv.className = "enemyCardFrontDivAppear";
+    const enemyCardBackDiv = document.getElementById("enemyCardBackDiv");
+    enemyCardBackDiv.className = "enemyCardBackDivhide";
 }

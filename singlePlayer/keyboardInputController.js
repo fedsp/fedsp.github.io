@@ -1,8 +1,15 @@
-
+let { showEnemyCardFront , showEnemyCardBack } = await import("./drawer.js");
 
 export async function keyboardInputController(evt, roundControllerObj) {
-
     evt = evt || window.event;
+
+    if(evt.key=="a"){
+        await showEnemyCardFront();
+    }
+    else if(evt.key=="s"){
+        await showEnemyCardBack();
+    }
+    
     switch (roundControllerObj.gameState) {
         case "notReadyToBegin":
             return;

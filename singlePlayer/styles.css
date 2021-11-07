@@ -19,7 +19,7 @@ body, html {
 }
 
 .hiddenElement {
-    display: none;
+    visibility: hidden;
 }
 
 #loadingScreen {
@@ -224,9 +224,10 @@ body, html {
 #player2Pokemon {
     width: var(--player2PokeSize);
     height: var(--player2PokeSize);
-    top: 42vh;
-    right: 14vw;
+    top: 46vh;
+    right: 18vw;
 }
+
 
 .pokemonTile {
     width: 100%;
@@ -406,39 +407,132 @@ body, html {
     image-rendering: pixelated;
 }
 
-.flip-card {
-    background-color: transparent;
-    width: 300px;
-    height: 300px;
-    perspective: 1000px;
-    
-  }
-
-  .flip-card img{
-    image-rendering: pixelated;
-  }
-  
-  .flip-card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.6s;
-    transform-style: preserve-3d;
-  }
-  
-  .flip-card .flip-card-inner.flipped {
-    transform: rotateY(180deg);
-  }
-  
-  .flip-card-front, .flip-card-back {
+#enemyCardFrontDiv{    
     position: absolute;
-    width: 100%;
-    height: 100%;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-  }
-  
-  
-  .flip-card-back {
-    transform: rotateY(180deg);
-  }
+    z-index: 999;
+    top:0vh;
+}
+
+#player2PokemonTile{
+    width: 150px;
+    height: 300px;
+    image-rendering: pixelated;
+}
+
+.enemyCardFrontDivhide{    
+    animation: disappearEnemyCardFront 1s ;
+    animation-fill-mode: forwards;
+}
+
+@keyframes disappearEnemyCardFront{
+    0%{
+        filter: opacity(100%);
+    }
+    50%{
+        filter: opacity(100%);
+        transform: rotateY(90deg);
+        transform-style: preserve-3d;
+    }
+    51%{
+        filter: opacity(1%);
+        transform: rotateY(91deg);
+        transform-style: preserve-3d;
+    }
+    100%{
+        filter: opacity(1%);
+        transform: rotateY(180deg);
+        transform-style: preserve-3d;
+    }
+}
+
+.enemyCardFrontDivappear{    
+    animation: appearEnemyCardFront 1s ;
+    animation-fill-mode: forwards;
+}
+
+@keyframes appearEnemyCardFront{
+    0%{
+        filter: opacity(1%);
+        transform: rotateY(180deg);
+        transform-style: preserve-3d;
+    }
+    50%{
+        filter: opacity(1%);
+        transform: rotateY(91deg);
+        transform-style: preserve-3d;
+    }
+    51%{
+        filter: opacity(100%);
+        transform: rotateY(90deg);
+        transform-style: preserve-3d;
+    }
+    100%{
+        filter: opacity(100%);
+        transform: rotateY(0deg);
+        transform-style: preserve-3d;
+    }
+}
+
+
+#enemyCardBackDiv{    
+    position: absolute;
+}
+
+#enemyCardBackImg{
+    image-rendering: pixelated;
+}
+
+.enemyCardBackDivhide{    
+    animation: disappearEnemyCardBack 1s ;
+    animation-fill-mode: forwards;
+}
+
+@keyframes disappearEnemyCardBack{
+    0%{
+        filter: opacity(100%);
+    }
+    50%{
+        filter: opacity(100%);
+        transform: rotateY(90deg);
+        transform-style: preserve-3d;
+    }
+    51%{
+        filter: opacity(1%);
+        transform: rotateY(91deg);
+        transform-style: preserve-3d;
+    }
+    100%{
+        filter: opacity(1%);
+        transform: rotateY(180deg);
+        transform-style: preserve-3d;
+    }
+}
+
+.enemyCardBackDivappear{    
+    animation: appearEnemyCardBack 1s ;
+    animation-fill-mode: forwards;
+}
+
+@keyframes appearEnemyCardBack{
+    0%{
+        filter: opacity(1%);
+        transform: rotateY(180deg);
+        transform-style: preserve-3d;
+    }
+    50%{
+        filter: opacity(1%);
+        transform: rotateY(91deg);
+        transform-style: preserve-3d;
+    }
+    51%{
+        filter: opacity(100%);
+        transform: rotateY(90deg);
+        transform-style: preserve-3d;
+    }
+    100%{
+        filter: opacity(100%);
+        transform: rotateY(0deg);
+        transform-style: preserve-3d;
+    }
+}
+

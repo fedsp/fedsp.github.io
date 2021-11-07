@@ -89,13 +89,12 @@ export class roundController {
                 break;
         }
         drawTieArea(this.tieCards);
-        await drawPlayerCard(2,this.player2Card);
         this.currentTurn==1?
             await this.animationsObj.player1Attack()
             :
             await this.animationsObj.player2Attack();
         await drawBattle();
-        hideEnemyCard(2);
+        await hideEnemyCard();
         this.gameState = "roundStarted";
         this.roundStart();
     }
