@@ -124,17 +124,17 @@ export function drawCursor(prevIndex, newIndex) {
 
 export function drawRoundBegin() {
     for (let i = 1; i <= 2; i++) {
-        let spriteImg = document.getElementById(`player${i}PokemonTile`);
-        let frontOrBack = i == 1 ? "Back" : "Front";
-        spriteImg.src = `./media/images/misteriousPokemon${frontOrBack}.png`;
-        let playerMenu = document.getElementById(`player${i}Menu`);
-        playerMenu.className = "hiddenElement";
-        let pokemonLabelDiv = document.getElementById(`player${i}Pokemon`);
-        let innerPokemonLabelDiv = pokemonLabelDiv.getElementsByTagName("div")[0];
-        innerPokemonLabelDiv.className = "pokemonLabels hiddenElement";
-        if(i==2){
-            showEnemyCardFront();
-        }
+        // let spriteImg = document.getElementById(`player${i}PokemonTile`);
+        // let frontOrBack = i == 1 ? "Back" : "Front";
+        // spriteImg.src = `./media/images/misteriousPokemon${frontOrBack}.png`;
+        // let playerMenu = document.getElementById(`player${i}Menu`);
+        // playerMenu.className = "hiddenElement";
+        // let pokemonLabelDiv = document.getElementById(`player${i}Pokemon`);
+        // let innerPokemonLabelDiv = pokemonLabelDiv.getElementsByTagName("div")[0];
+        // innerPokemonLabelDiv.className = "pokemonLabels hiddenElement";
+        // if(i==2){
+        //     showEnemyCardFront();
+        // }
     }
 }
 
