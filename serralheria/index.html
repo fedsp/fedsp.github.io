@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orçamento de Janelas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .results {
+            margin-top: 20px;
+        }
+
+        .results ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .results li {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Orçamento de Janelas</h1>
+        <label for="height">Altura (mm):</label>
+        <input type="number" id="height" placeholder="Digite a altura">
+
+        <label for="width">Largura (mm):</label>
+        <input type="number" id="width" placeholder="Digite a largura">
+
+        <label for="model">Modelo da Janela:</label>
+        <select id="model">
+            <option value="">Selecione um modelo</option>
+            <option value="supreme_two_movable">Linha Suprema - Duas folhas móveis</option>
+        </select>
+
+        <button onclick="calculateCosts()">Orçar</button>
+
+        <div class="results" id="results"></div>
+    </div>
+
+    <script>
+        const recipes = {
+            "supreme_two_movable": [
+                { profile: "su007", formula: "height - 5", quantity: 2 },
+                { profile: "su001", formula: "width - 32", quantity: 1 },
+                { profile: "su002", formula: "width - 32", quantity: 1 },
+                { profile: "su039", formula: "height - 55", quantity: 2 },
+                { profile: "su040", formula: "height - 55", quantity: 1 },
+                { profile: "su041", formula: "height - 55", quantity: 1 },
+                { profile: "su053", formula: "(height - 142) / 2", quantity: 4 }
+            ]
+        };
+
+        const prices = {
+            "su007": 15.0,
+            "su001": 12.5,
+            "su002": 12.5,
+            "su039": 18.0,
+            "su040": 20.0,
+            "su041": 22.0,
+            "su053": 10.0
+        };
+
+        function calculateCosts() {
+            const height = parseFloat(document.getElementById("height").value);
+            const width = parseFloat(document.getElementById("width").value);
+            const model = document.getElementById("model").value;
+            const resultsDiv = document.getElementById("results");
+
+            if (!height || !width || !model) {
+                resultsDiv.innerHTML = "<p>Por favor, preencha todos os campos.</p>";
+                return;
+            }
+
+            const recipe = recipes[model];
+            let totalCost = 0;
+            let output = "<ul>";
+
+            recipe.forEach(item => {
+                const value = eval(item.formula.replace(/height/g, height).replace(/width/g, width));
+                const cost = value * item.quantity * prices[item.profile];
+                totalCost += cost;
+                output += `<li>${item.quantity}x ${item.profile} de ${value.toFixed(2)}mm (R$ ${cost.toFixed(2)})</li>`;
+            });
+
+            output += `</ul><p><strong>Custo Total:</strong> R$ ${totalCost.toFixed(2)}</p>`;
+            resultsDiv.innerHTML = output;
+        }
+    </script>
+</body>
+</html>
