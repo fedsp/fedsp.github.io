@@ -1,26 +1,66 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <link href="./styles.css" rel="stylesheet">
-    <meta charset='utf-8' />
-    <script src='./script.js' async></script>
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Selection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
 
+        .container {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .project-links {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .project-links a {
+            display: block;
+            padding: 15px 25px;
+            text-decoration: none;
+            color: white;
+            background-color: #007BFF;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .project-links a:hover {
+            background-color: #0056b3;
+        }
+
+        .project-links a:active {
+            background-color: #003d80;
+        }
+    </style>
+</head>
 <body>
-    <div class="background"></div>
-    <div class="mainContainer" id="mainContainer">
-        <div class="banner">            
-            <div id="trunfoLogo"></div>
-            <div id="pokemonLogo"></div>
-        </div>
-        <div class="menuOption" id="singlePlayerSelect" onclick="handleMouseClick('singlePlayer')">
-            <img class="pokeballSelector" src="./media/images/pokeball.png">
-            <img class="menuOptionText" src="./media/images/singlePlayerMenu.png">
-        </div>
-        <div class="menuOption" id="multiPlayerSelect" onclick="handleMouseClick('multiPlayer')">
-            <img class="pokeballSelector hidden" src="./media/images/pokeball.png">
-            <img class="menuOptionText" src="./media/images/multiPlayerMenu.png">
+    <div class="container">
+        <h1>Select a Project</h1>
+        <div class="project-links">
+            <a href="/trunfoPokemon" target="_blank">Super Trunfo Pokémon</a>
+            <a href="/serralheria" target="_blank">Serralheria</a>
         </div>
     </div>
 </body>
-<html>
+</html>
